@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Tictactoe</title>
     <style>
         table {
             border-collapse: collapse;
@@ -18,25 +18,37 @@
             font-size: 30px;
             text-align: center;
         }
+
+        button#reset {
+            text-align: center;
+            background-color: azure;
+            padding: 1em 3em;
+            border: 1px solid blue;
+            margin-top: 2em;
+        }
     </style>
 </head>
 
 <body>
-    <table>
-        {%for i in range(3)%}
-        <tr>
-            {% for j in range(3)%}
-            <td>
-                {%if game[i][j]%}
-                {{game[i][j]}}
-                {%else%}
-                <a href="{{url_for('play', row=i, col=j)}}">Play {{turn}} here</a>
-                {%endif%}
-            </td>
+    <form action="{{url_for('reset')}}">
+        <table>
+            {%for i in range(3)%}
+            <tr>
+                {% for j in range(3)%}
+                <td>
+                    {%if game[i][j]%}
+                    {{game[i][j]}}
+                    {%else%}
+                    <a href="{{url_for('play', row=i, col=j)}}">Play {{turn}} here</a>
+                    {%endif%}
+                </td>
+                {%endfor%}
+            </tr>
             {%endfor%}
-        </tr>
-        {%endfor%}
-    </table>
+        </table>
+        <button id="reset"" type=" submit">Reset</button>
+    </form>
+
 
 
 </body>
