@@ -26,11 +26,13 @@ def play(row, col):
     if session["turn"] == "X":
         if check_win("X"):
             return "X wins"
-        session["turn"] = "O"
+        else:
+            session["turn"] = "O"
     else:
-        session["turn"] = "X"
-        if check_win("Y"):
-            return "Y wins"
+        if check_win("O"):
+            return "O wins"
+        else:
+            session["turn"] = "X"
     return redirect(url_for("index"))
 
 
