@@ -25,12 +25,14 @@ def play(row, col):
     session["board"][row][col] = session["turn"]
     if session["turn"] == "X":
         if check_win("X"):
-            return "X wins"
+            set_values_to_empty(session)
+            return render_template('index.html', game=session["board"], turn=session["turn"], message="X wins")
         else:
             session["turn"] = "O"
     else:
         if check_win("O"):
-            return "O wins"
+            set_values_to_empty(session)
+            return render_template('index.html', game=session["board"], turn=session["turn"], message="X wins")
         else:
             session["turn"] = "X"
     return redirect(url_for("index"))
@@ -52,3 +54,10 @@ def check_win(turn):
     d1 = session["board"][0][0] == turn and session["board"][1][1] == turn and session["board"][2][2] == turn
     d2 = session["board"][0][2] == turn and session["board"][1][1] == turn and session["board"][2][0] == turn
     return row1 or row2 or row3 or col1 or col2 or col3 or d1 or d2
+
+
+def set_values_to_empty(session):
+    for i in range(0, 3):
+        for j in range(0, 3):
+            if not session["board"][i][j]:
+                session["board"][i][j] = ""
