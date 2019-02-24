@@ -41,5 +41,12 @@ def reset():
 
 
 def check_win(turn):
-    rows = session["board"][0][0] == turn and session["board"][0][1] == turn and session["board"][0][2] == turn
-    return rows
+    row1 = session["board"][0][0] == turn and session["board"][0][1] == turn and session["board"][0][2] == turn
+    row2 = session["board"][1][0] == turn and session["board"][1][1] == turn and session["board"][1][2] == turn
+    row3 = session["board"][2][0] == turn and session["board"][2][1] == turn and session["board"][2][2] == turn
+    col1 = session["board"][0][0] == turn and session["board"][1][0] == turn and session["board"][2][0] == turn
+    col2 = session["board"][0][1] == turn and session["board"][1][1] == turn and session["board"][2][1] == turn
+    col3 = session["board"][0][2] == turn and session["board"][1][2] == turn and session["board"][2][2] == turn
+    d1 = session["board"][0][0] == turn and session["board"][1][1] == turn and session["board"][2][2] == turn
+    d2 = session["board"][0][2] == turn and session["board"][1][1] == turn and session["board"][2][0] == turn
+    return row1 or row2 or row3 or col1 or col2 or col3 or d1 or d2
