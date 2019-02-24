@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        table {
+            border-collapse: collapse;
+        }
+
+        td {
+            border: 1px solid black;
+            height: 150px;
+            width: 150px;
+            font-size: 30px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <table>
+        {%for i in range(3)%}
+        <tr>
+            {% for j in range(3)%}
+            <td>
+                {%if game[i][j]%}
+                {{game[i][j]}}
+                {%else%}
+                <a href="{{url_for('play', row=i, col=j)}}">Play {{turn}} here</a>
+                {%endif%}
+            </td>
+            {%endfor%}
+        </tr>
+        {%endfor%}
+    </table>
+
+
+</body>
+
+</html>
