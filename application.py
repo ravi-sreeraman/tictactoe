@@ -1,12 +1,14 @@
 from flask import Flask, render_template, session, redirect, url_for
 from flask_session import Session
 from tempfile import mkdtemp
+import os
 
 app = Flask(__name__)
 
 app.config["SESSION_FILE_DIR"] = mkdtemp()
 app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
+app.secret_key = os.urandom(24)
 Session(app)
 
 win = False
@@ -32,7 +34,7 @@ def play(row, col):
     else:
         if check_win("O"):
             set_values_to_empty(session)
-            return render_template('index.html', game=session["board"], turn=session["turn"], message="X wins")
+            return render_template('index.html', game=session["board"], turn=session["turn"], message="O wins")
         else:
             session["turn"] = "X"
     return redirect(url_for("index"))
